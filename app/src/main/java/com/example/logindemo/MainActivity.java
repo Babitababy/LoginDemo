@@ -2,6 +2,7 @@ package com.example.logindemo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,37 +23,23 @@ import java.util.jar.Attributes;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText Name;
-    private EditText Password;
-    private Button Login;
-    private TextView Text;
-    private int counter=5;
-    private TextView register;
-    private FirebaseAuth firebaseAuth;
-    private ProgressDialog progressDialog;
+    public Button login;
+    public Button register;
 
+    private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Name=(EditText)findViewById(R.id.editText);
-        Password=(EditText)findViewById(R.id.editText1);
-        Login=(Button)findViewById(R.id.button);
-        Text=(TextView)findViewById(R.id.textView2);
-        register=(TextView)findViewById(R.id.textView3);
-
-        Text.setText("No. of attempts Remaining: 5");
-        firebaseAuth=FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(this);
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user!=null){
-            startActivity(new Intent(MainActivity.this,SecondActivity.class));
-        }
-        Login.setOnClickListener(new View.OnClickListener() {
+        mtoolbar=(Toolbar)findViewById(R.id.main_toolbar);
+        mtoolbar.setTitle("Welcome to Chat App");
+        setSupportActionBar(mtoolbar);
+        login=(Button)findViewById(R.id.login);
+        register=(Button)findViewById(R.id.register);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Validate(Name.getText().toString(), Password.getText().toString());
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
@@ -61,32 +48,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
             }
         });
-
-    }
-    public void Validate(String userName,String userPass){
-        progressDialog.setMessage("you can login aur register from here");
-        progressDialog.show();
-        firebaseAuth.signInWithEmailAndPassword(userName,userPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    progressDialog.dismiss();
-                    Toast.makeText(MainActivity.this,"Login Sucessful",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,SecondActivity.class));
-                }
-                else{
-                    Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
-                    counter--;
-                    Text.setText("No. of attempts Remaining:" +counter);
-                    progressDialog.dismiss();
-                    if(counter==0){
-                        Login.setEnabled(false);
-                    }
-                }
-            }
-        });
     }
 }
-
-
-//just to know how to push

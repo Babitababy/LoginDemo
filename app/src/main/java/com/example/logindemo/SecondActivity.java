@@ -52,5 +52,4 @@ public class SecondActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
     }
-
 }
