@@ -3,6 +3,7 @@ package com.example.logindemo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,6 +49,7 @@ public class SettingActivity extends AppCompatActivity {
     private CircleImageView mimage;
     private TextView mname;
     private TextView mstatus;
+    private Toolbar mToolBar;
     private Button mStatusBtn;
     private static final int GALLERY_PICK = 1;
     private Button mImageBtn;
@@ -61,10 +63,13 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         mimage = (CircleImageView) findViewById(R.id.profile_image);
         mname = (TextView) findViewById(R.id.DisplayName);
+        mToolBar=(Toolbar)findViewById(R.id.setting_appbar);
+        setSupportActionBar(mToolBar);
         mstatus = (TextView) findViewById(R.id.statusupdate);
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_Uid = mCurrentUser.getUid();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         mImageStorage = FirebaseStorage.getInstance().getReference();
         mStatusBtn = (Button) findViewById(R.id.ChangeStatus);
         mImageBtn = (Button) findViewById(R.id.imageChange);

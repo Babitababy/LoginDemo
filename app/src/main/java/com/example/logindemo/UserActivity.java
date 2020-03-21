@@ -36,7 +36,8 @@ protected void onCreate(Bundle savedInstanceState) {
         mtoolbar=(Toolbar)findViewById(R.id.user_layout);
         setSupportActionBar(mtoolbar);
        getSupportActionBar().setTitle("Accounts Update");
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     mRecycle=(RecyclerView)findViewById(R.id.recycle);
     mUserDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
     mRecycle.setHasFixedSize(true);
@@ -68,10 +69,9 @@ protected void onCreate(Bundle savedInstanceState) {
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent profileIntent=new Intent(UserActivity.this,ProfileActivity.class);
+                        Intent profileIntent=new Intent(UserActivity.this,MessageActivity.class);
                         profileIntent.putExtra("user_id",user_id);
                         startActivity(profileIntent);
-
                     }
                 });
             }

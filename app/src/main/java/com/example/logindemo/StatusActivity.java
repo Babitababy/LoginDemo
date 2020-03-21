@@ -40,9 +40,10 @@ public class StatusActivity extends AppCompatActivity {
         mToolBar=(Toolbar)findViewById(R.id.status_appBar);
         mCurrentUser= FirebaseAuth.getInstance().getCurrentUser();
         String currentUid=mCurrentUser.getUid();
-
-        mStatusReference= FirebaseDatabase.getInstance().getReference().child("Users").child(currentUid);
         setSupportActionBar(mToolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mStatusReference= FirebaseDatabase.getInstance().getReference().child("Users").child(currentUid);
 
         String status_value=getIntent().getStringExtra("status_value");
         mstatus=(TextInputEditText) findViewById(R.id.statush);

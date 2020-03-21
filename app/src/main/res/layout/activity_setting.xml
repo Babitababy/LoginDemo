@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity">
 
+    <include
+        android:id="@+id/setting_appbar"
+        layout="@layout/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="96dp"

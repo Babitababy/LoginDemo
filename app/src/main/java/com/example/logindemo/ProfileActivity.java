@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         final String user_id = getIntent().getStringExtra("user_id");
-        msg=(Button)findViewById(R.id.messgae);
+        msg=(Button)findViewById(R.id.message);
         declinereq=(Button)findViewById(R.id.decline);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
         mReqDatabse= FirebaseDatabase.getInstance().getReference().child("req_data");
