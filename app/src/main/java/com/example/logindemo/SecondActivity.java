@@ -2,7 +2,7 @@ package com.example.logindemo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +16,16 @@ public class SecondActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private Button logout;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         firebaseAuth=FirebaseAuth.getInstance();
         logout=(Button)findViewById(R.id.button3);
+        toolbar=(Toolbar)findViewById(R.id.app_toolbar);
+        toolbar.setTitle("Welcome to Chat App");
+        setSupportActionBar(toolbar);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,4 +56,5 @@ public class SecondActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
     }
+
 }
