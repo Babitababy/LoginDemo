@@ -91,6 +91,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                mprogress.dismiss();
                                 Intent mainIntent = new Intent(RegistrationActivity.this, SecondActivity.class);
                                 startActivity(mainIntent);
                                 finish();

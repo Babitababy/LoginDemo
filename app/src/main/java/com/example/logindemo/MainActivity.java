@@ -25,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     public Button login;
     public Button register;
+    private FirebaseUser firebaseUser;
 
     private Toolbar mtoolbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,5 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
             }
         });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(firebaseUser!=null){
+            startActivity(new Intent(MainActivity.this,SecondActivity.class));
+            finish();
+        }
     }
 }
