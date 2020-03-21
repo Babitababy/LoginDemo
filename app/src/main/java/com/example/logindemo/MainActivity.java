@@ -1,63 +1,83 @@
 package com.example.logindemo;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import android.app.ProgressDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.jar.Attributes;
+public class  MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
-public class MainActivity extends AppCompatActivity {
-
-    public Button login;
-    public Button register;
-    private FirebaseUser firebaseUser;
-
+    private ViewPager mviewPager;
+    private FirebaseAuth firebaseAuth;
     private Toolbar mtoolbar;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private TabLayout mTabLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mtoolbar=(Toolbar)findViewById(R.id.main_toolbar);
-        mtoolbar.setTitle("Welcome to Chat App");
+        mAuth = FirebaseAuth.getInstance();
+        mtoolbar=(Toolbar)findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mtoolbar);
-        login=(Button)findViewById(R.id.login);
-        register=(Button)findViewById(R.id.register);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            }
-        });
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
-            }
-        });
+        getSupportActionBar().setTitle("My Chat App");
+        mviewPager=(ViewPager) findViewById(R.id.viewpager);
+        mSectionsPagerAdapter=new SectionsPagerAdapter(getSupportFragmentManager());
+        mviewPager.setAdapter(mSectionsPagerAdapter );
+        mTabLayout=(TabLayout)findViewById(R.id.tablayout);
+        mTabLayout.setupWithViewPager(mviewPager);
     }
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-        if(firebaseUser!=null){
-            startActivity(new Intent(MainActivity.this,SecondActivity.class));
-            finish();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser==null){
+            senttostart();
         }
+    }
+    public void senttostart(){
+        Intent startIntent=new Intent(MainActivity.this,StartActivity.class);
+        startActivity(startIntent);
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.mainmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if(item.getItemId()==R.id.menulogout){
+
+            FirebaseAuth.getInstance().signOut();
+            senttostart();
+        }
+        if(item.getItemId()==R.id.menu_setting){
+            Intent settingIntent=new Intent(MainActivity.this,SettingActivity.class);
+            startActivity(settingIntent);
+        }
+        if(item.getItemId()==R.id.menu_user){
+            Intent mainIntent=new Intent(MainActivity.this,UserActivity.class);
+            startActivity(mainIntent);
+        }
+
+        return true;
     }
 }

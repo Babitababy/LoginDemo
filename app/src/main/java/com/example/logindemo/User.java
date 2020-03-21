@@ -1,28 +1,18 @@
-package com.example.logindemo.Model;
+package com.example.logindemo;
 
 public class User {
-    public User(String id, String username, String imageurl) {
-        this.id = id;
+    public User() {
+    }
+
+    public User(String username, String id, String imageurl) {
         this.username = username;
+        this.id = id;
         this.imageurl = imageurl;
     }
 
-    private String id;
-
-    public User() {
-
-    }
-
     private String username;
+    private String id;
     private String imageurl;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -30,6 +20,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImageurl() {
