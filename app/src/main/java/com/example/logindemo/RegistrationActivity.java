@@ -99,7 +99,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     });
                 }
                 else{
-                    mprogress.hide();
+                    mprogress.dismiss();
                     Toast.makeText(RegistrationActivity.this,"Cannot Sign In..Plaese Try Again",Toast.LENGTH_LONG);
 
                 }
