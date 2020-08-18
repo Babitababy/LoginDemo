@@ -35,7 +35,7 @@ protected void onCreate(Bundle savedInstanceState) {
        setSupportActionBar(mtoolbar);
         mtoolbar=(Toolbar)findViewById(R.id.user_layout);
         setSupportActionBar(mtoolbar);
-       getSupportActionBar().setTitle("Accounts Update");
+       getSupportActionBar().setTitle("Update Account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     mRecycle=(RecyclerView)findViewById(R.id.recycle);
