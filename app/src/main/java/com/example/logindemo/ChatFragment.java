@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
  public ChatFragment() {
  // Required empty public constructor
+  // demo
  }
 
 
