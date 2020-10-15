@@ -21,6 +21,16 @@
         android:layout_marginTop="96dp"
         android:textSize="25dp"
         android:text="Login toYour Account" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="96dp"
+        android:textSize="25dp"
+        android:text="Enter Your Email Id" />
 
     <EditText
         android:id="@+id/logemail"
@@ -33,7 +43,16 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress" />
-
+<TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="96dp"
+        android:textSize="25dp"
+        android:text="Enter Your Password" />
     <EditText
         android:id="@+id/logpass"
         android:layout_width="259dp"
